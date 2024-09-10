@@ -5,12 +5,37 @@
 // - A getter and setter for the title, with the setter allowing changes only if the new title is not empty.
 
 class Book {
-  // YOUR CODE HERE
+  #title;
+  #price;
+  #discountedPrice;
+
+  constructor(title, price) {
+    this.#title = title;
+    this.#price = price;
+    this.#discountedPrice = price;
+  }
+
+  addDiscount(discount) {
+    this.#discountedPrice = this.#price - (this.#price * discount) / 100;
+  }
+
+  get price() {
+    return this.#discountedPrice;
+  }
+
+  get title() {
+    return this.#title;
+  }
+
+  set title(newTitle) {
+    if (newTitle) {
+      this.#title = newTitle;
+    }
+  }
 }
 
-
 // TEST CASE / DRIVER CODE
-const book1 = new Book("JavaScript Basics", "John Doe", 50);
+const book1 = new Book("JavaScript Basics", 50);
 console.log(book1.title); // Expected output: "JavaScript Basics"
 console.log(book1.price); // Expected output: 50
 
